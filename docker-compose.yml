@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  maids.db:
+    container_name: lms.postgree
+    image: postgres
+    environment:
+      POSTGRES_USER: 2ee128f8f0_user
+      POSTGRES_PASSWORD: 2ee128f8f0_password
+      PGDATA: /data/postgres
+    volumes:
+      - lms_postgres:/data/postgres
+    ports:
+      - "5435:5432"
+
+    networks:
+      - lms_postgres
+    restart: unless-stopped
+
+  maids.pgadmin:
+    container_name: lms.pgadmin
+    image: dpage/pgadmin4
+    env_file:
+      - "./.env"
+
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - lms_pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - lms_postgres
+    restart: unless-stopped
+
+networks:
+  lms_postgres:
+    driver: bridge
+volumes:
+  lms_postgres:
+  lms_pgadmin:
