@@ -13,7 +13,7 @@ Library Management System API using Spring Boot.
 
 ```sh
 git clone https://github.com/obadahalak/LMS.git
-cd library-management-system
+cd LMS
 
 ```
 
