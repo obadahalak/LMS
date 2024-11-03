@@ -5,6 +5,8 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.jdbc.core.JdbcOperations;
 
+import java.util.Objects;
+
 public class UniqueValidator implements ConstraintValidator<Unique, String> {
 
 
@@ -19,8 +21,8 @@ public class UniqueValidator implements ConstraintValidator<Unique, String> {
 
     @Override
     public void initialize(Unique constraintAnnotation) {
-        this.table=constraintAnnotation.table();
-        this.column=constraintAnnotation.column();
+        this.table = constraintAnnotation.table();
+        this.column = constraintAnnotation.column();
     }
 
     @Override
@@ -28,7 +30,7 @@ public class UniqueValidator implements ConstraintValidator<Unique, String> {
 
         context.disableDefaultConstraintViolation();
 
-        String  sql = String.format(
+        String sql = String.format(
                 "SELECT COUNT(*) AS aggregate FROM %s e WHERE (e.%s = ?)",
                 table,
                 column
@@ -44,15 +46,14 @@ public class UniqueValidator implements ConstraintValidator<Unique, String> {
                 .addPropertyNode(column)
                 .addConstraintViolation();
 
-        return isValid(email,result);
+        return isValid(email, result);
     }
 
 
-    public Boolean isValid(String value,Integer result){
-            if(RequestContext.getAuthEmail().equals(value))
-                        return result == 1;
-            else
-                return result == 0;
+    public Boolean isValid(String value, Integer result) {
+        if (Objects.nonNull(RequestContext.getAuthEmail()) && RequestContext.getAuthEmail().equals(value))
+            return result == 1;
+        return result == 0;
 
     }
 }
