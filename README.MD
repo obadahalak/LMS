@@ -42,3 +42,6 @@ To start the project, run the following command. The server will be accessible a
 mvn spring-boot:run
 
 ```
+
+### postman collection
+[https://restless-firefly-799550.postman.co/workspace/Obada~53d2eedf-a40b-4c08-847c-00f0e0df728f/collection/17256840-81cb8b3c-2215-461c-aacc-02eadf673bd1?action=share&creator=17256840&active-environment=17256840-e2445d62-ec7a-4508-b19a-0d8a3b346d81](https://restless-firefly-799550.postman.co/workspace/Obada~53d2eedf-a40b-4c08-847c-00f0e0df728f/collection/17256840-81cb8b3c-2215-461c-aacc-02eadf673bd1?action=share&creator=17256840&active-environment=17256840-e2445d62-ec7a-4508-b19a-0d8a3b346d81)
