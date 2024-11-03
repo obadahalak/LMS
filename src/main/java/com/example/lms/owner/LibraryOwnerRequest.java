@@ -26,7 +26,7 @@ public class LibraryOwnerRequest {
 
     @NotNull
     @Email
-    @Unique(table = "LibraryOwner", column = "email", groups = OnCreate.class)
+    @Unique(table = "library_owner", column = "email", groups = OnCreate.class)
     private String email;
 
 
